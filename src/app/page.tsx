@@ -54,6 +54,22 @@ export default function Home() {
             Read our docs
           </a>
         </div>
+
+        <div className="flex flex-col items-center sm:items-start gap-4">
+          <button
+            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto"
+            onClick={async () => {
+              try {
+                const response = await fetch('/api/test-db-connection');
+                const data = await response.json();
+                setDbConnectionStatus(data.message);
+              } catch (error: any) {
+                setDbConnectionStatus(`Error: ${error.message}`);
+              }
+            }}
+          >Test DB Connection</button>
+          {dbConnectionStatus && <p>{dbConnectionStatus}</p>}
+        </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
