@@ -1,0 +1,19 @@
+/* Reset for h1 */
+.h1 {
+  font-size: 2em; /* Restore default font size */
+  font-weight: bold; /* Restore default font weight */
+  margin-top: 0.67em; /* Restore default top margin */
+  margin-bottom: 0.67em; /* Restore default bottom margin */
+}
+
+/* Reset for ul */
+.ul {
+  list-style: disc; /* Restore default list style */
+  margin-left: 40px; /* Restore default left margin/padding (adjust as needed) */
+  padding-left: 0; /* Ensure no extra padding */
+}
+
+/* Reset for li */
+.li {
+  display: list-item; /* Ensure it displays as a list item */
+}
