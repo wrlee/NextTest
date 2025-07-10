@@ -1,4 +1,150 @@
-mdx
-# About Us
+This is Markdown content to see how markdown is rendered.
+
+- See [Markdown Basic Syntax Guide](https://www.markdownguide.org/basic-syntax/)
+- And [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+## Enable NextJS's support for Markdown pages and components
+The [How to use markdown and MDX in Next.js](https://nextjs.org/docs/pages/guides/mdx), NextJS documentation, did not quite work, but you can augment the following, there.
+1. Install npm packages to support Markdown/MDX
+```bash
+npm install @mdx-js/loader @mdx-js/react @next/mdx
+npm install -D @types/mdx
+```
+2. Update `next.config.ts` to enable MDX:
+3. Add `mdx-components.tsx` to the `src/` folder, parallel, but not in, the `src/app` direcotry.
+```tsx
+  import type { MDXComponents } from 'mdx/types';
+  import markdown_styles from './mdx-resets.module.css';
+
+  export function useMDXComponents(components: MDXComponents): MDXComponents {
+  	return {
+		...components,
+		wrapper: ({ children }) => <div className={markdown_styles._mdxWrapper}>{children}</div>,
+  	}
+  }
+```
+   - `wrapper` component is a special component which wraps mdx content and allows style definitions to be applied globally.
+   - "_mdxWrapper" can be any unique name that you want so long as it mateched the definition in the imported style-module
+   - "markdown_styles" can be any name you want
+4. Create CSS module to define styles for tagss within the `wrapper` component. Wrap the tags' style definitions with the wrapper's class name, ("_mdxWrapper"), in this example.
+```css
+._mdxWrapper {
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre, table {
+		display: block;
+		margin: initial;
+		margin-block: initial;
+		margin-inline: initial;
+	}
+
+	h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+
+	h1 { font-size: 2em; }
+	h2 { font-size: 1.5em; }
+  ...
+```
+  - For some reason most of the formatting for tags that Markdown is translated to have most formatting stripped, by default, so their styles must be built from scratch.
+5. Install a pluggin to support Github flavored Markdown.
+   - `npm install -D remark-gfm`
+   - `npm install -D @types/remark-gfm`
+
+
+
+
+Configure VS Code to help with syntax editing:
+
+- Settings --> "File Associations" --> add `*.mdx`/`markdown-react`
+- Add extension:
+  - *Markdown All in One*, by yzhang — Keyboard handling
+  - *Markdown Editor*, by Zaaack — Semi WYSIWYG editor
+  - *Preview*, Haixin Chen — Preview
+
+# Lists
+
+- This is an unordered list item 1
+- This is an unordered list item 2
+  - unordered level 2 item 1
+  - unordered level 2 item 2
+    - unordered level 3 item 1
+    - unordered level 3 item 2
+  - unordered level 2 item 3
+- This is an unordered list item 3
+
+1. Ordered list, item 1
+2. Ordered list, item 2
+3. Ordered level 2 item 1
+4. Ordered level 2 item 2
+   1. Ordered level 3 item 1
+   2. Ordered level 3 item 2
+5. Ordered list, item 3
+
+# Title 1
+
+Text content
+
+## Title 2
+
+Text content
+
+### Title 3
+
+Text content
+
+#### Title 4
+
+Text content
+
+##### Title 5
+
+Text content
+
+###### Title 6
+
+Text content
+####### Title 7
+Text content
+
+This is a **Hello World** example using **@next/mdx** in Next.JS with App Router.
 
 This is a simple about page created using MDX.
+
+# Test
+
+- one Now is th etie nfor all good peopl eto see whether this will wrap like a bullet item should wrap. I am not sure if this will.
+- two
+
+## Two Title
+
+blah blah
+
+### three
+
+Talking about .
+
+#### Four
+
+This is a link [blah]()
+
+#### Five
+
+About _terms_ and more `terms`
+
+#### Six
+
+1. First
+2. Second
+3. Third
+
+```
+| Header 1 | Header 2 |
+|----------|----------|
+| Cell 1   | Cell 2   |
+| Cell 3   | Cell 4   |
+```
+
+
+| Header 1 | Header 2 |
+| ---------- | ---------- |
+| Cell 1   | Cell 2   |
+| Cell 3   | Cell 4   |
+
+again, and again.

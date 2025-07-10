@@ -1,19 +1,107 @@
-/* Reset for h1 */
-.h1 {
-  font-size: 2em; /* Restore default font size */
-  font-weight: bold; /* Restore default font weight */
-  margin-top: 0.67em; /* Restore default top margin */
-  margin-bottom: 0.67em; /* Restore default bottom margin */
-}
+/**
+ * Style definitions for tags corresponding to Markdown for MDX components
+ * This file provides a reset for common HTML elements used in MDX content to ensure
+ * consistent styling.
+ */
 
-/* Reset for ul */
-.ul {
-  list-style: disc; /* Restore default list style */
-  margin-left: 40px; /* Restore default left margin/padding (adjust as needed) */
-  padding-left: 0; /* Ensure no extra padding */
-}
+/* * {
+	all: initial;
+	display: revert; // Revert display to its default based on tag
+} */
 
-/* Reset for li */
-.li {
-  display: list-item; /* Ensure it displays as a list item */
-}
+._mdxWrapper {
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre, table {
+		display: block;
+		margin-block: initial;
+		margin-inline: initial;
+	}
+
+	h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+
+	h1 { font-size: 2em; }
+	h2 { font-size: 1.5em; }
+	h3 { font-size: 1.17em; }
+	h4 { font-size: 1em; }
+	h5 { font-size: 0.83em; }
+	h6 { font-size: 0.67em; }
+
+	p { margin-block: 1em; }
+
+	a {
+		color: -webkit-link;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+	ul, ol {
+		display: block;
+		padding-inline-start: 40px;
+	}
+	ul { list-style-type: disc; }
+	ol { list-style-type: decimal; }
+	li {
+		display: list-item;
+	}
+
+	blockquote {
+		margin-block: 1em;
+		margin-inline: 40px;
+	}
+	code, pre {
+		font-family: monospace;
+	}
+	pre {
+		display: block;
+		margin-block: 1em;
+		white-space: pre;
+	}
+
+	img {
+		display: inline-block;
+		max-width: 100%;
+		height: auto;
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 2px;
+		border-color: gray;
+		box-sizing: border-box;
+		text-indent: initial;
+	}
+	thead, tbody, tfoot {
+		display: table-header-group;
+		vertical-align: middle;
+		border-color: inherit;
+	}
+	tbody {
+		display: table-row-group;
+		border: inherit;
+	}
+	tfoot {
+		display: table-footer-group;
+	}
+	tr {
+		display: table-row;
+		vertical-align: inherit;
+		border-bottom: 1px solid black;
+		border-color: inherit;
+	}
+	:not(thead) > tr:last-child {
+		border-bottom: none;
+	}
+	td, th {
+		display: table-cell;
+		vertical-align: inherit;
+		border-right: 1px solid black;
+		padding-inline: 4px;
+	}
+	td:last-child, th:last-child {
+		border-right: none;
+	}
+	col { display: table-column; }
+	colgroup { display: table-column-group; }
+
+   /* Add resets for other tags as needed */
+ } /* ._mdxWrapper */
+
