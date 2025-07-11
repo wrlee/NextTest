@@ -1,0 +1,111 @@
+/**
+ * Style definitions for tags corresponding to Markdown for MDX components
+ * This file provides a reset for common HTML elements used in MDX content to ensure
+ * consistent styling.
+ */
+
+/* * {
+	all: initial;
+	display: revert; // Revert display to its default based on tag
+} */
+
+._mdxWrapper {
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre, table {
+		display: block;
+		margin-block: initial;
+		margin-inline: initial;
+	}
+
+	h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+
+	h1 {
+		border-top: 1px solid lightgray;
+		margin-block-start: 0.67em;
+		font-size: 2em;
+	}
+	h2 { margin-block-start: 0.83em; font-size: 1.5em; }
+	h3 { margin-block-start: 1em;    font-size: 1.17em; }
+	h4 { margin-block-start: 1.67em; font-size: 1em; }
+	h5 { margin-block-start: 1.33em; font-size: 0.83em; }
+	h6 { margin-block-start: 2.33em; font-size: 0.67em; }
+
+	p { margin-block: 0.4em; }
+
+	a {
+		color: -webkit-link;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+	ul, ol {
+		display: block;
+		padding-inline-start: 40px;
+	}
+	ul { list-style-type: disc; }
+	ul ul { list-style-type: circle; }
+	ul ul ul { list-style-type: square; }
+	ol { list-style-type: decimal; }
+	/* li { display: list-item; margin-block: 0.2em; } */
+
+	blockquote {
+		margin-block: 1em;
+		margin-inline: 40px;
+	}
+	code, pre {
+		font-family: monospace;
+	}
+	pre {
+		display: block;
+		margin-block: 1em;
+		white-space: pre;
+	}
+
+	img {
+		display: inline-block;
+		max-width: 100%;
+		height: auto;
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 2px;
+		border-color: gray;
+		box-sizing: border-box;
+		text-indent: initial;
+	}
+	thead, tbody, tfoot {
+		display: table-header-group;
+		vertical-align: middle;
+		border-color: inherit;
+	}
+	tbody {
+		display: table-row-group;
+		border: inherit;
+	}
+	tfoot {
+		display: table-footer-group;
+	}
+	tr {
+		display: table-row;
+		vertical-align: inherit;
+		border-bottom: 1px solid black;
+		border-color: inherit;
+	}
+	:not(thead) > tr:last-child {
+		border-bottom: none;
+	}
+	td, th {
+		display: table-cell;
+		vertical-align: inherit;
+		border-right: 1px solid black;
+		padding-inline: 4px;
+	}
+	td:last-child, th:last-child {
+		border-right: none;
+	}
+	col { display: table-column; }
+	colgroup { display: table-column-group; }
+
+   /* Add resets for other tags as needed */
+ } /* ._mdxWrapper */
+

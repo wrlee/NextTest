@@ -24,3 +24,20 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+ul.contains-task-list  { 
+  /* Remove default padding as we will manage spacing with list-style-position */
+  padding-inline-start: 25 !important; 
+}
+.contains-task-list li {
+  list-style-type: disc; /* Default list style for all li within ul.contains-task-list */
+  list-style-position: inside; /* Place the list marker inside the content flow */
+}
+
+.contains-task-list li.task-list-item {
+  background-color: lightblue !important;
+  list-style-type: none !important; /* Remove list style for task list items */
+}
+.contains-task-list li.task-list-item input {
+  margin-right: 5px;
+}

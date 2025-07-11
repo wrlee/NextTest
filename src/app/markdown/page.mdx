@@ -1,0 +1,131 @@
+## NextJS Markdown Support
+This is Markdown content to see how markdown is rendered.
+
+- See [Markdown Basic Syntax Guide](https://www.markdownguide.org/basic-syntax/)
+- See [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) for Github style markdown
+
+The whole point is that you can use Markdown content to create content for NextJS pages. And you can import markdown content as components, as well.
+
+### Configure NextJS's support for Markdown
+
+The [How to use markdown and MDX in Next.js](https://nextjs.org/docs/pages/guides/mdx), NextJS documentation, did not quite work, but you can augment the following, there.
+
+1. Install npm packages to support Markdown/MDX
+
+```bash
+  npm install @mdx-js/loader @mdx-js/react @next/mdx
+  npm install -D @types/mdx
+```
+
+2. Update `next.config.ts` to enable MDX:
+3. Add `mdx-components.tsx` to the `src/` folder, parallel, but not in, the `src/app` direcotry.
+
+```tsx
+  import type { MDXComponents } from 'mdx/types';
+  import markdown_styles from './mdx-resets.module.css';
+
+  export function useMDXComponents(components: MDXComponents): MDXComponents {
+  	return {
+		...components,
+		wrapper: ({ children }) => <div className={markdown_styles._mdxWrapper}>{children}</div>,
+  	}
+  }
+```
+
+- `wrapper` component is a special component which wraps mdx content and allows style definitions to be applied globally.
+- "_mdxWrapper" can be any unique name that you want so long as it mateched the definition in the imported style-module
+- "markdown_styles" can be any name you want
+
+4. Create CSS module to define styles for tagss within the `wrapper` component. Wrap the tags' style definitions with the wrapper's class name, ("_mdxWrapper"), in this example.
+```css
+._mdxWrapper {
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre, table {
+		display: block;
+		margin: initial;
+		margin-block: initial;
+		margin-inline: initial;
+	}
+
+	h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+
+	h1 { font-size: 2em; }
+	h2 { font-size: 1.5em; }
+  ...
+```
+  - For some reason most of the formatting for tags that Markdown is translated to have most formatting stripped, by default, so their styles must be built from scratch.
+
+5. Install a pluggin to support Github flavored Markdown; this adds support for checkboxes and tables.
+   - `npm install -D remark-gfm`
+   - `npm install -D @types/remark-gfm`
+6. Configure VS Code to help with syntax editing:
+   - Settings --> "File Associations" --> add `*.mdx`/`markdown`
+   - Add extension:
+     - *Markdown All in One*, by yzhang — Keyboard handling
+     - *Markdown Editor*, by Zaaack — Semi WYSIWYG editor
+     - *Preview*, Haixin Chen — Preview Markdown, HTML, etc.
+
+# Titles, level 1
+This is a **bold text**, _italic text_, and _**bold italic text**_ (`_` and `*` are interchangable for these purposes)…
+
+And this is `inline computer` text
+
+## Title 2: Unorder Lists
+The following are nested unordered lists:
+
+- This is an unordered list item 1
+- This is an unordered list item 2
+  - unordered level 2 item 1
+  - unordered level 2 item 2
+    - unordered level 3 item 1
+      - unordered level 4 item 1
+    - unordered level 3 item 2
+  - unordered level 2 item 3
+- This is an unordered list item 3
+
+### Title 3: Ordered Lists (and nested)
+
+Paragraph before an ordered list.
+1. Ordered list, item 1
+2. Ordered list, item 2
+   1. Ordered level 2 item 1
+   2. Ordered level 2 item 2
+      1. Ordered level 3 item 1
+      2. Ordered level 3 item 2
+3. Ordered list, item 3
+
+And text following the lists.
+
+#### Title 4: Checkboxes
+
+These are checkboxes, but they are not supported by NextJS's markdown support by default. Loading `remark-gfm` will help, but it still isn't correct.
+- Uormal list
+
+asdf
+
+- Unother item
+- [ ] Unfinished cechbox item
+- [X] Finished checkbox
+
+##### Title 5: Tables?
+NextJS default mdx support does not parse table syntax. `remarkGfm` does.
+
+```
+| Header 1 | Header 2 |
+|----------|----------|
+| Cell 1   | Cell 2   |
+| Cell 3   | Cell 4   |
+```
+Table:
+
+| Header 1 | Header 2 |
+|----------|----------|
+| Cell 1   | Cell 2   |
+| Cell 3   | Cell 4   |
+
+###### Title 6
+
+Text content
+####### Title 7
+Text content
+
+This is a simple about page created using MDX.
