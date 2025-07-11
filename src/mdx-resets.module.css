@@ -18,14 +18,18 @@
 
 	h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
-	h1 { font-size: 2em; }
-	h2 { font-size: 1.5em; }
-	h3 { font-size: 1.17em; }
-	h4 { font-size: 1em; }
-	h5 { font-size: 0.83em; }
-	h6 { font-size: 0.67em; }
+	h1 {
+		border-top: 1px solid lightgray;
+		margin-block-start: 0.67em;
+		font-size: 2em;
+	}
+	h2 { margin-block-start: 0.83em; font-size: 1.5em; }
+	h3 { margin-block-start: 1em;    font-size: 1.17em; }
+	h4 { margin-block-start: 1.67em; font-size: 1em; }
+	h5 { margin-block-start: 1.33em; font-size: 0.83em; }
+	h6 { margin-block-start: 2.33em; font-size: 0.67em; }
 
-	p { margin-block: 1em; }
+	p { margin-block: 0.4em; }
 
 	a {
 		color: -webkit-link;
@@ -38,10 +42,10 @@
 		padding-inline-start: 40px;
 	}
 	ul { list-style-type: disc; }
+	ul ul { list-style-type: circle; }
+	ul ul ul { list-style-type: square; }
 	ol { list-style-type: decimal; }
-	li {
-		display: list-item;
-	}
+	/* li { display: list-item; margin-block: 0.2em; } */
 
 	blockquote {
 		margin-block: 1em;
