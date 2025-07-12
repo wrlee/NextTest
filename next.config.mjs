@@ -1,8 +1,7 @@
-import type { NextConfig } from "next";
 import withMDX from "@next/mdx";
-// import remarkGfm from "remark-gfm";
+import remarkGfm from "remark-gfm";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 

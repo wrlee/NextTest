@@ -25,19 +25,23 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-ul.contains-task-list  { 
-  /* Remove default padding as we will manage spacing with list-style-position */
-  padding-inline-start: 25 !important; 
-}
-.contains-task-list li {
-  list-style-type: disc; /* Default list style for all li within ul.contains-task-list */
-  list-style-position: inside; /* Place the list marker inside the content flow */
-}
-
-.contains-task-list li.task-list-item {
-  background-color: lightblue !important;
-  list-style-type: none !important; /* Remove list style for task list items */
-}
-.contains-task-list li.task-list-item input {
-  margin-right: 5px;
+/** 
+ * The following styles Markdown checkboxes (`- [ ]`) from `remarkGfm`. Since it generates class
+ * name references, we need to use selectors that can refer to the class names, literally. So the
+ * style definitions must be imported directly from a CSS file, not as a CSS-module. Thus, I put
+ * them here, rather than a separate CSS file.
+ * 
+ * The checkbox lists are mapped to `<ul class="contains-task-list">` with list-items
+ * `<li class="task-list-item">`. Adjacent non-checkbox list items are contained in the same  list
+ * without the `task-list-item` class name. 
+ * 
+ * 1. By default, checkboxes are preceded with a bullet, so the bullet marker must be suppressed
+ * 2. Once the bullet is suppressed, the position of the item has to be adjusted so it
+ *    aligns with other list items.
+ * 3. An edge case is that if a non-checkbox list-item is included in the list, its postion
+ *    has to look "normal."
+ */
+ul.contains-task-list li.task-list-item {
+  list-style-type: none; /* Remove list style for task list items */
+  text-indent: -18px;    /* ...and outdent it so it aligns        */
 }
