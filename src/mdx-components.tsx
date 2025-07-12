@@ -1,9 +1,10 @@
-import type { MDXComponents } from 'mdx/types'
-import resets from './mdx-resets.module.css'; // Import the reset CSS module
+import { MDXComponents } from 'mdx/types';
+
+import styles from './mdx-components.module.css'; // Import the reset CSS module
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   	return {
 		...components,
-		wrapper: ({ children }) => <div className={resets._mdxWrapper}>{children}</div>,
+		wrapper: ({ children }) => <div className={styles._mdxWrapper}>{children}</div>,
   	}
 }
