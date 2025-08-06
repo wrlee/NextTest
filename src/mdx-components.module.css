@@ -39,7 +39,7 @@
 
 	ul, ol {
 		display: block;
-		padding-inline-start: 40px;
+		padding-inline-start: 1.5625rem;
 	}
 	ul { list-style-type: disc; }
 	ul ul { list-style-type: circle; }
@@ -48,8 +48,10 @@
 	/* li { display: list-item; margin-block: 0.2em; } */
 
 	blockquote {
-		margin-block: 1em;
-		margin-inline: 40px;
+		margin-inline: 20px;
+		padding-block: 10px;
+		padding-inline: 20px;
+		background-color: #f9f9f9;
 	}
 	code, pre {
 		font-family: monospace;
@@ -69,15 +71,15 @@
 	table {
 		/* Table styling variables */
 		/* --table-border-color: blue; */
-		/* --table-border-width: 2px;																 *//* Enable to non-0 to surround table with border */
-		/* --table-header-background-color: #f2f2f2; */											/* Enable for distinct header background	color */
-		--table-header-border-color: #BBB;														  /* Defaults to cell border color			*/	
-		--table-header-border-width: 2px;															/* Defaults to row border width			*/
-		--table-body-row-border-width: 1px; 														/* Enable to non-0 show row dividers 	*/
-		--table-body-col-border-width: var(--table-body-row-border-width,1px); 	/* Enable to non-0 show col dividers 	*/
-		--table-body-cell-border-color: lightgray;												/* Override border color 					*/					
-		--table-body-background-color: white;														/* Even row background color 				*/
-		--table-body-background-color-alt: #f9f9f9;												/* Odd row background color 				*/
+		/* --table-border-width: 2px;														 *//* Enable to non-0 to surround table with border */
+		/* --table-header-background-color: #f2f2f2; */									/* Enable for distinct header background	color */
+		--table-header-border-color: #BBB;												   /* Defaults to cell border color			*/
+		--table-header-border-width: 2px;													/* Defaults to row border width			*/
+		--table-body-row-border-width: 1px; 												/* Enable to non-0 show row dividers 	*/
+		--table-body-col-border-width: var(--table-body-row-border-width,1px);  /* Enable to non-0 show col dividers 	*/
+		--table-body-cell-border-color: lightgray;										/* Override border color 					*/
+		--table-body-background-color: white;												/* Even row background color 				*/
+		--table-body-background-color-alt: #f9f9f9;										/* Odd row background color 				*/
 		margin-left: var(--table-body-row-border-width,0);
 		border-collapse: collapse;
 		/* box-sizing: border-box; */
@@ -88,13 +90,13 @@
 		vertical-align: middle;
 	}
 	thead {
-		border-color: var(--table-border-color); 
-		border-width: var(--table-border-width,0) var(--table-border-width,0) 0 var(--table-border-width,0); 
+		border-color: var(--table-border-color);
+		border-width: var(--table-border-width,0) var(--table-border-width,0) 0 var(--table-border-width,0);
 	}
 	tbody {
 		/* display: table-row-group; */ /* Revert display to default */
-		border-color: var(--table-border-color); 
-		border-width: 0 var(--table-border-width,0) var(--table-border-width,0) var(--table-border-width,0); 
+		border-color: var(--table-border-color);
+		border-width: 0 var(--table-border-width,0) var(--table-border-width,0) var(--table-border-width,0);
 	}
 	thead th {
 		/* display: table-row-group; */ /* Revert display to default */
@@ -125,4 +127,3 @@
 	tbody tr:nth-child(even) { background-color: var(--table-body-background-color-alt); }
 
  } /* ._mdxWrapper */
-

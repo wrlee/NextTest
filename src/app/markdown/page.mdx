@@ -13,47 +13,46 @@ The [How to use markdown and MDX in Next.js](https://nextjs.org/docs/pages/guide
 
 1. Install npm packages to support Markdown/MDX
 
-```bash
-  npm install @mdx-js/loader @mdx-js/react @next/mdx
-  npm install -D @types/mdx
-```
+   ```bash
+   npm install @mdx-js/loader @mdx-js/react @next/mdx
+   npm install -D @types/mdx
+   ```
 
 2. Update `next.config.ts` to enable MDX:
 3. Add `mdx-components.tsx` to the `src/` folder, parallel, but not in, the `src/app` direcotry.
 
-```tsx
-  import type { MDXComponents } from 'mdx/types';
-  import markdown_styles from './mdx-resets.module.css';
+   ```tsx
+   import type { MDXComponents } from 'mdx/types';
+   import markdown_styles from './mdx-resets.module.css';
 
-  export function useMDXComponents(components: MDXComponents): MDXComponents {
-  	return {
-		...components,
-		wrapper: ({ children }) => <div className={markdown_styles._mdxWrapper}>{children}</div>,
-  	}
-  }
-```
-
-- `wrapper` component is a special component which wraps mdx content and allows style definitions to be applied globally.
-- "_mdxWrapper" can be any unique name that you want so long as it mateched the definition in the imported style-module
-- "markdown_styles" can be any name you want
+   export function useMDXComponents(components: MDXComponents): MDXComponents {
+  	 return {
+		 ...components,
+		 wrapper: ({ children }) => <div className={markdown_styles._mdxWrapper}>{children}</div>,
+     }
+   }
+   ```
+   - `wrapper` component is a special component which wraps mdx content and allows style definitions to be applied globally.
+   - "_mdxWrapper" can be any unique name that you want so long as it mateched the definition in the imported style-module
+   - "markdown_styles" can be any name you want
 
 4. Create CSS module to define styles for tagss within the `wrapper` component. Wrap the tags' style definitions with the wrapper's class name, ("_mdxWrapper"), in this example.
-```css
-._mdxWrapper {
-	h1, h2, h3, h4, h5, h6, p, blockquote, pre, table {
-		display: block;
-		margin: initial;
-		margin-block: initial;
-		margin-inline: initial;
-	}
+   ```css
+    ._mdxWrapper {
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre, table {
+        display: block;
+        margin: initial;
+        margin-block: initial;
+        margin-inline: initial;
+      }
 
-	h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+      h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
-	h1 { font-size: 2em; }
-	h2 { font-size: 1.5em; }
-  ...
-```
-  - For some reason most of the formatting for tags that Markdown is translated to have most formatting stripped, by default, so their styles must be built from scratch.
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.5em; }
+      ...
+   ```
+   - For some reason most of the formatting for tags that Markdown is translated to have most formatting stripped, by default, so their styles must be built from scratch.
 
 5. Install a pluggin to support Github flavored Markdown; this adds support for checkboxes and tables.
    - `npm install -D remark-gfm`
@@ -66,11 +65,11 @@ The [How to use markdown and MDX in Next.js](https://nextjs.org/docs/pages/guide
      - *Preview*, Haixin Chen — Preview Markdown, HTML, etc.
 
 # Titles, level 1
-This is a **bold text**, _italic text_, and _**bold italic text**_ (`_` and `*` are interchangable for these purposes)…
+This is a **bold text**, _italic text_, and _**bold italic text**_ (`_` and `*` are interchangable for these purposes)…. ~~Don't read this text~~
 
 And this is `inline computer` text
 
-## Title 2: Unorder Lists
+## Title 2: Unordered and Ordered Lists
 The following are nested unordered lists:
 
 - This is an unordered list item 1
@@ -83,8 +82,6 @@ The following are nested unordered lists:
   - unordered level 2 item 3
 - This is an unordered list item 3
 
-### Title 3: Ordered Lists (and nested)
-
 Paragraph before an ordered list.
 1. Ordered list, item 1
 2. Ordered list, item 2
@@ -96,6 +93,12 @@ Paragraph before an ordered list.
 
 And text following the lists.
 
+### Title 3: Blockquotes and Colors
+This is what they said:
+> This is quoted content that may be wide and too wide to contain in the area.
+
+The background color is `#ffffff` for light mode and `#000000` for dark mode.
+
 #### Title 4: Checkboxes
 
 These are checkboxes, but they are not supported by NextJS's markdown support by default. Loading `remark-gfm` will help, but it still isn't correct.
@@ -105,6 +108,9 @@ List separation
 
 - Another item, but part of a checklist
 - [ ] Unfinished cechbox item
+  - aasdf asd asd fasdf
+  - [ ] Unfinished cechbox item
+  - [ ] Unfinished cechbox item
 - [X] Finished checkbox
 - Curious what happens here
 
@@ -113,22 +119,28 @@ NextJS default mdx support does not parse table syntax. `remarkGfm` does.
 
 ```
 | Header 1 | Header 2 |
-|----------|----------|
+| -------- | -------- |
 | Cell 1   | Cell 2   |
 | Cell 3   | Cell 4   |
 ```
 Table:
 
-| Header 1 | Header 2 | Head 3 |
-|----------|----------|--------|
-| Cell 1   | Cell 2   | Cell 3 |
-| Cell 4   | Cell 5   | Cell 6 |
-| Cell 5   | Cell 8   | 9 |
+| Centered | Left align |  Right |
+| :------: | :--------- | -----: |
+|  Cell 1  | Cell 2     | Cell 3 |
+|    4     | 5          | Cell 6 |
+|  Cell 5  | Cell 8     |      9 |
 
-###### Title 6
+###### Title 6: Footnotes, doc links, and images
 
-Text content
-####### Title 7
-Text content
+Here is a simple footnote[^1].
 
-This is a simple about page created using MDX.
+A footnote can also have multiple lines[^2].
+
+Here is a interdoc [reference](#title-4-checkboxes)
+
+[^1]: My reference.
+[^2]: To add line breaks within a footnote, prefix new lines with 2 spaces.
+  This is a second line.
+
+Look at the image! ![Image alt](https://avatar.iran.liara.run/public/boy?username=a)
