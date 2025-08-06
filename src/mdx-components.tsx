@@ -1,10 +1,11 @@
 import { MDXComponents } from 'mdx/types';
+import './mdx-components.css';
 
 import styles from './mdx-components.module.css'; // Import the reset CSS module
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
-  	return {
+	return {
 		...components,
-		wrapper: ({ children }) => <div className={styles._mdxWrapper}>{children}</div>,
-  	}
+		wrapper: ({ children }: { children: React.ReactNode }) => <div className={styles._mdxWrapper}>{children}</div>,
+	}
 }
